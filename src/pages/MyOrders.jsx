@@ -11,7 +11,6 @@ const MyOrders = () => {
   return (
     <div className="w-full min-h-screen bg-[#fef4ef] flex justify-center px-4">
       <div className="w-full max-w-[800px] p-4">
-
         {/* Back Button */}
         <div className="absolute top-3 left-6">
           <button
@@ -24,19 +23,21 @@ const MyOrders = () => {
             />
           </button>
         </div>
-         <h1 className="text-2xl font-bold text-center mb-5">My Orders</h1>
+        <h1 className="text-2xl font-bold text-center mb-5">My Orders</h1>
 
-        <div className="space-y-6">
-          {myOrders?.map((order, index) =>(
+        {myOrders?.length === 0 ? (
+          <p className="text-center text-2xl text-gray-800 mt-20">No order found.</p>
+        ) : (
+          <div className="space-y-6">
+            {myOrders?.map((order, index) =>
               userData.role == "user" ? (
-              <UserOrderCard key={index} data={order}/>
-            ):userData.role == "owner" ? (
-              <OwnerOrderCard key={index} data={order} />
-            ): null
-          ))}
-        </div>
-
-
+                <UserOrderCard key={index} data={order} />
+              ) : userData.role == "owner" ? (
+                <OwnerOrderCard key={index} data={order} />
+              ) : null
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

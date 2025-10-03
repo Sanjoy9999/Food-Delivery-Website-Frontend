@@ -67,16 +67,16 @@ const OwnerOrderCard = ({ data }) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {data.shopOrders[0].shopOrderItems.map((item, index) => (
           <div
             key={index}
-            className="flex gap-2 items-center border rounded-md p-2 bg-gray-50"
+            className="flex flex-col gap-2 items-center border rounded-md p-2 bg-gray-50 md:w-[180px] lg:w-[200px] w-[160px]"
           >
             <img
               src={item.item.image}
               alt={item.item.name}
-              className="w-12 h-12 object-cover rounded"
+              className="w-37 h-37 object-cover rounded"
             />
             <div>
               <p className="text-sm font-semibold text-gray-800">
