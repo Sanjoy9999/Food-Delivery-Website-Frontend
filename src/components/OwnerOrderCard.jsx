@@ -132,10 +132,9 @@ const OwnerOrderCard = ({ data }) => {
 
       {data.shopOrders[0].status === "out of delivery" && (
         <div className="mt-3 p-2 border rounded-lg text-sm bg-orange-100">
-          <p className="font-semibold mb-2">Available Delivery Boys:</p>
-          <p className="text-xs text-gray-500 mb-2">
-            (Total found: {availableBoys?.length || 0})
-          </p>
+          {data.shopOrders[0].assignedDeliveryBoy ? (<p className="font-semibold mb-2">Available Delivery Boy:</p>):(
+            <p className="font-semibold mb-2">Assign Delivery Boy:</p>
+          )}
           {availableBoys && availableBoys.length > 0 ? (
             availableBoys.map((b, index) => (
               <div className="text-gray-700 text-base py-1" key={index}>
@@ -143,9 +142,11 @@ const OwnerOrderCard = ({ data }) => {
               </div>
             ))
           ) : (
+            data.shopOrders[0].assignedDeliveryBoy? (
+              <div>Name:-{data.shopOrders[0].assignedDeliveryBoy.fullName} <br/>📱{data.shopOrders[0].assignedDeliveryBoy.mobile}</div>
+            ):
             <div className="text-gray-500">
               ⏳ Waiting for Delivery Boy to accept...
-              <p className="text-xs mt-1">(If no boys appear, check delivery boy locations and distance)</p>
             </div>
           )}
         </div>
